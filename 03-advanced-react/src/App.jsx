@@ -1,8 +1,12 @@
+import Starter from "./tutorial/06-forms/starter/practice";
+
 function App() {
   return (
-    <div className='container'>
-      <h2>Advanced React</h2>
-    </div>
+    <>
+      <div className="container">
+        <Starter />
+      </div>
+    </>
   );
 }
 

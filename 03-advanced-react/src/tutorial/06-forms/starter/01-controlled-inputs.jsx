@@ -1,12 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const ControlledInputs = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
-  const handleChange = (e) => {
-    setName(e.target.value);
-  };
+  // const handleChange = (e) => {
+  //   setName(e.target.value);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +20,7 @@ const ControlledInputs = () => {
         <label htmlFor="name" className="form-label">
           name
         </label>
+
         <input
           type="text"
           id="name"

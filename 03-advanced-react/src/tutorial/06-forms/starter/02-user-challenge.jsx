@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { data } from "../../../data";
 
 const UserChallenge = () => {
@@ -21,7 +21,7 @@ const UserChallenge = () => {
   };
 
   return (
-    <div>
+    <>
       <form className="form" onSubmit={handleSubmit}>
         <h4>Add User</h4>
         <div className="form-row">
@@ -53,7 +53,7 @@ const UserChallenge = () => {
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 export default UserChallenge;

@@ -1,92 +1,76 @@
+import React from "react";
 import { useState } from "react";
 
 const Practice = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [data, setData] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [users, setUsers] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title) return;
-
-    const newUser = {
-      id: data.length + 1,
-      title: title,
-      description: description,
-    };
-    const updatedUsers = [...data, newUser];
-    setData(updatedUsers);
-    setTitle("");
-    setDescription("");
-  };
-
-  const removeUser = (id) => {
-    const updatedUsers = data.filter((item) => item.id !== id);
-    setData(updatedUsers);
-  };
-
-  const updateUser = (id) => {
-    const updatedItem = data.find((item) => item.id === id);
-    if (!updatedItem) return;
-
-    const newTitle = prompt("Edit title:", updatedItem.title);
-    if (newTitle !== null && newTitle !== "") {
-      const updatedData = data.map((item) =>
-        item.id === id ? { ...item, title: newTitle } : item
-      );
-      setData(updatedData);
+    const newUser = [
+      {
+        name: name,
+        email: email,
+        password: password,
+      },
+    ];
+    const userExists = users.find((item) => item.name === newUser.name);
+    if (userExists == -1) {
+      return;
     }
+    setUsers([...users, newUser]);
+    console.log(users);
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
     <>
-      <form className="form" onSubmit={handleSubmit}>
-        <h4>todo app</h4>
-        <div className="form-row">
-          <label htmlFor="title" className="form-label">
-            title
-          </label>
-          <input
-            type="text"
-            className="form-input"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div className="form-row">
-          <label htmlFor="description" className="form-label">
-            description
-          </label>
-          <input
-            type="text"
-            className="form-input"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <button className="btn btn-block">submit</button>
-      </form>
-      <h2>todo list</h2>
-      {data.map((item) => {
-        return (
-          <div key={item.id}>
-            <h4>
-              {item.title} &rarr; {item.description}
-            </h4>
-            <button className="btn" onClick={() => removeUser(item.id)}>
-              Remove
-            </button>
-            <button
-              className="btn"
-              style={{ marginLeft: "15px" }}
-              onClick={() => updateUser(item.id)}
-            >
-              Edit
-            </button>
+      <div className="container">
+        <form className="form" onSubmit={handleSubmit}>
+          <h3>Login</h3>
+          <div className="form-row">
+            <label htmlFor="name" className="form-label">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              className="form-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
-        );
-      })}
+          <div className="form-row">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="text"
+              id="email"
+              className="form-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="form-row">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="form-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button className="btn btn-block">submit</button>
+        </form>
+      </div>
     </>
   );
 };
